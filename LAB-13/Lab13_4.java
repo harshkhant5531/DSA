@@ -1,11 +1,11 @@
 public class Lab13_4 {
     class Node {
         int data;
-        Node next;
+        Node link;
 
         public Node(int data) {
             this.data = data;
-            this.next = null;
+            this.link = null;
         }
     }
 
@@ -22,7 +22,7 @@ public class Lab13_4 {
 
         do {
             System.out.print(temp.data + " --> ");
-            temp = temp.next;
+            temp = temp.link;
         } while (temp != head);
         System.out.println("Head");
     }
@@ -32,38 +32,38 @@ public class Lab13_4 {
         Node n1 = new Node(data);
 
         if (head == null) {
-            n1.next = n1;
+            n1.link = n1;
             head = n1;
             tail = n1;
         } else {
-            n1.next = head;
+            n1.link = head;
             head = n1;
-            tail.next = head;
+            tail.link = head;
         }
     }
 
     public void divide() {
-        if (head == null || head.next == head) {
+        if (head == null || head.link == head) {
             return;
         }
 
         Node slow = head;
         Node fast = head;
 
-        while (fast.next != head && fast.next.next != head) {
-            slow = slow.next;
-            fast = fast.next.next;
+        while (fast.link != head && fast.link.link != head) {
+            slow = slow.link;
+            fast = fast.link.link;
         }
 
         Node head1 = head;
-        Node head2 = slow.next;
+        Node head2 = slow.link;
 
-        slow.next = head1;
+        slow.link = head1;
 
-        if (fast.next == head) {
-            fast.next = head2;
+        if (fast.link == head) {
+            fast.link = head2;
         } else {
-            fast.next.next = head2;
+            fast.link.link = head2;
         }
         printData(head1);
 
